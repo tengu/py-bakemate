@@ -20,5 +20,5 @@ setup(
         "Environment :: Console",
         "Intended Audience :: Developers",
         ],
-    #long_description = """"""
+    long_description = """see https://github.com/tengu/py-bakemate"""
     )

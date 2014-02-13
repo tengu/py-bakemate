@@ -1,6 +1,12 @@
 
 all:
 
+register:
+	python setup.py sdist register
+
+upload:
+	python setup.py sdist upload
+
 clean:
 	rm -fr ve build dist *.egg-info *.pyc
 
