@@ -3,7 +3,7 @@ import json
 import baker
 import bakemate
 
-@bakemate.http_requst
+@bakemate.http_request
 def riak_set_conflict_resolution_policy(server, bucket):
     """set the coflict resolution policy to 'last write wins'"""
     return dict(url="http://{server}:8098/buckets/{bucket}/props".format(**locals()),

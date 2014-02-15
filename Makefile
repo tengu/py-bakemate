@@ -1,6 +1,9 @@
 
 all:
 
+tags:
+	etags `find $(PWD) -type f |grep -v \.git`
+
 register:
 	python setup.py sdist register
 
@@ -8,7 +11,7 @@ upload:
 	python setup.py sdist upload
 
 clean:
-	rm -fr ve build dist *.egg-info *.pyc
+	rm -fr ve build dist *.egg-info *.pyc TAGS
 
 ve:
 	virtualenv --system-site-packages ve
