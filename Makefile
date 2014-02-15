@@ -1,6 +1,9 @@
 
 all:
 
+etags:
+	etags `find $(PWD) -type f`
+
 register:
 	python setup.py sdist register
 
