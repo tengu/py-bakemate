@@ -23,11 +23,10 @@ develop: ve
 	ve/bin/python setup.py develop
 
 t:
-	ve/bin/python example/example.py riak_set_conflict_resolution_policy localhost yoyo --mode=data\
+	python example/example.py riak_set_conflict_resolution_policy localhost yoyo --mode=data\
 	| jq -M .
 	@echo
-	ve/bin/python example/example.py riak_set_conflict_resolution_policy localhost yoyo --mode=cmd
+	python example/example.py riak_set_conflict_resolution_policy localhost yoyo --mode=cmd
 	@echo
-	ve/bin/python example/example.py riak_set_conflict_resolution_policy localhost yoyo --mode=data,cmd
-
+	python example/example.py riak_set_conflict_resolution_policy localhost yoyo --mode=data,cmd
 

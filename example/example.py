@@ -1,6 +1,8 @@
 #!/usr/bin/env python
+import sys,os
 import json
 import baker
+sys.path.append(os.path.abspath('.'))
 import bakemate
 
 @bakemate.http_request
