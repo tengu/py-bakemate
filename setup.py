@@ -5,7 +5,7 @@ setup(
     py_modules = ["bakemate"],
     #scripts = [""],
     zip_safe=False,
-    version = "0.1",
+    version = "0.5",
     license = "LGPL",
     install_requires=["requests"],
     description = "a baker helper",
