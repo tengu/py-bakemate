@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys,os
+import urllib
 import json
 import requests
 
@@ -51,7 +52,10 @@ class Deco(object):
             return last(output)
 
         wrap.func_name=f.func_name
+        wrap.func_defaults=f.func_defaults
+        wrap.func_doc=f.func_doc
         wrap.__name__=f.__name__
+        wrap.__doc__=f.__doc__
 
         return wrap
 
@@ -82,9 +86,14 @@ class HttpRequestDeco(Deco):
             opts.append('-X'+req['method'])
 
         # --data
-        data=req.get('data', (None,None))
+        data=req.get('data')
+        querystring=None
         if not data:
             pass
+        elif req.get('method').upper()=='GET':
+            # append querystring to the url
+            assert not isinstance(data, basestring)
+            querystring=urllib.urlencode(data)
         elif isinstance(data, basestring):
             opts.append('--data'+data) # ??
         elif isinstance(data, tuple):
@@ -98,7 +107,10 @@ class HttpRequestDeco(Deco):
         for hdr in req.get('headers',{}).items():
             opts.append('-H"{}: {}"'.format(*hdr))
 
-        opts.append(req['url'])
+        url=req['url']
+        if querystring:
+            url+='?'+querystring
+        opts.append("'%s'" % url)
 
         return ' '.join(opts)
 
